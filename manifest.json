@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Task Tree Modal Extension",
+  "version": "1.1",
+  "description": "Task Management mit Cytoscape.js in einem Custom Modal",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "notifications",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["cytoscape.min.js", "cytoscape_cxt_menu.js", "content.js"],
+      "css": ["modal.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Task Tree öffnen"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["cytoscape.min.js", "cytoscape_cxt_menu.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
